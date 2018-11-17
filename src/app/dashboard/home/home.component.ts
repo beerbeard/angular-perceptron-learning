@@ -14,19 +14,19 @@ import { TestModel } from 'src/app/models/test.model';
 })
 export class HomeComponent implements OnInit {
 
-    private task: string;
-    private selected: string;
-    private codes: Array<string>;
-    private running: boolean;
-    private testable: boolean;
-    private tested: boolean;
-    private model: RequestModel;
-    private result: ResultModel;
-    private test: TestModel;
-    private logs: Array<string>;
-    private gates: Array<OptionModel>;
-    private options: Array<OptionModel>;
-    private testResult: Array<TestModel>;
+    public task: string;
+    public selected: string;
+    public codes: Array<string>;
+    public running: boolean;
+    public testable: boolean;
+    public tested: boolean;
+    public model: RequestModel;
+    public result: ResultModel;
+    public test: TestModel;
+    public logs: Array<string>;
+    public gates: Array<OptionModel>;
+    public options: Array<OptionModel>;
+    public testResult: Array<TestModel>;
 
     constructor(private perceptronService: PerceptronService) { }
 
