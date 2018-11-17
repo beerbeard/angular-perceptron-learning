@@ -1,0 +1,15 @@
+.footer {
+    background: #e6e6e6;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    height: 100%;
+    padding: 0 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    label {
+        margin: 0;
+    }
+}

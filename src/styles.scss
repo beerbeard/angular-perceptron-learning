@@ -1,0 +1,194 @@
+@import "assets/bootstrap/css/bootstrap";
+
+// Prism style
+@import '~prismjs/themes/prism.css';
+
+html,
+body {
+    background: #f8f8f8;
+    width: 100%;
+    height: 100%;
+    color: #292b2c;
+    font-family: 'Krub', Arial, Helvetica, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Krub";
+    src: url('assets/fonts/Krub-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Krub";
+    src: url('assets/fonts/Krub-Italic.ttf');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Krub";
+    src: url('assets/fonts/Krub-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Krub";
+    src: url('assets/fonts/Krub-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bitter";
+    src: url('assets/fonts/Bitter-Regular.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Overpass";
+    src: url('assets/fonts/OverpassMono-Regular.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+
+// Remove gutter padding
+.no-gutter>[class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+a {
+    color: #5d9cec;
+}
+
+a:hover {
+    color: #4a89dc;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 54px;
+    text-transform: uppercase;
+    font-family: 'Bitter', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+img {
+    width: 100%;
+}
+
+.aligner {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.badge {
+    background: #5d9cec;
+    border-radius: 2px;
+    color: #ffffff;
+    display: initial;
+    font-size: 10px;
+    font-weight: 300;
+    margin: 3px;
+    padding: 3px 6px;
+    text-transform: uppercase;
+}
+
+.chapter {
+    margin-bottom: 28px;
+    text-align: justify;
+
+    .caption {
+        font-size: 28px;
+    }
+
+    .legend {
+        color: #5d9cec;
+        margin-bottom: 16px;
+    }
+}
+
+.featured {
+    padding: 92px 0;
+    text-align: center;
+
+    h1 {
+        margin: 0;
+    }
+
+    label {
+        font-style: italic;
+    }
+}
+
+.italic {
+    font-style: italic;
+}
+
+.quote {
+    margin: 30px 0 30px 120px;
+}
+
+.subtitle {
+    font-size: 22px;
+    text-transform: uppercase;
+    font-family: 'Bitter', Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.terminal {
+    font-family: 'Overpass', monospace;
+}
+
+.title {
+    font-size: 28px;
+    padding-bottom: 10px;
+}
+
+// Prism override
+pre[class*="language-"] {
+    background: #ffffff;
+    padding: 0 2em;
+    margin-bottom: 1rem;
+}
+
+// Bootstrap override
+.btn {
+    text-transform: uppercase;
+    width: 100%;
+}
+
+.btn-primary {
+    background: #5d9cec;
+    border-color: #5d9cec;
+}
+
+.btn-primary:hover {
+    background: #4a89dc;
+    border-color: #4a89dc;
+}
+
+.btn-primary:disabled {
+    background: #6082ad;
+    border-color: #6082ad;
+}
+
+.btn,
+.form-control,
+.input-group-text {
+    border-radius: 3px;
+}
+
+.input-group-text {
+    width: 55px;
+    justify-content: center;
+}

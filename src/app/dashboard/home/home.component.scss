@@ -1,0 +1,32 @@
+img {
+    border-radius: 2px;
+    border: 1px solid rgba(93, 156, 236, 0.25);
+    box-shadow: 0px 2px 2px 0px rgba(93, 156, 236, 0.15);
+}
+
+.big-select {
+    min-height: 124px;
+}
+
+.blue {
+    background: #5d9cec;
+    border-color: #5d9cec;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.description {
+    font-size: 14px;
+    font-style: italic;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.input-array {
+    margin-bottom: 20px;
+}
+
+.padding {
+    padding-top: 60px;
+}

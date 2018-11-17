@@ -1,0 +1,26 @@
+.footer,
+.header {
+    width: 100%;
+    background: #ffffff;
+}
+
+.footer {
+    height: 60px;
+}
+
+.header {
+    height: 360px;
+}
+
+.container,
+.dashboard {
+    min-height: 100%;
+}
+
+.container {
+    padding-bottom: 92px;
+}
+
+.dashboard {
+    width: 100%;
+}

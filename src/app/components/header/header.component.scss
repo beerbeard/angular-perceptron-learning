@@ -1,0 +1,50 @@
+.header {
+    height: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .background,
+    .overlay {
+        height: 100%;
+        width: 100%;
+    }
+
+    .background {
+        background-image: url('../../../assets/images/pattern.jpg');
+        background-repeat: repeat;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.25);
+        color: #f8f8f8;
+
+        hr {
+            margin: 0;
+        }
+
+        .menu {
+            height: 80px;
+
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+
+                li {
+                    display: inline;
+
+                    a {
+                        color: #f8f8f8;
+                        padding: 30px 36px;
+                        text-transform: uppercase;
+                        cursor: pointer;
+                    }
+
+                    a:hover {
+                        background: rgba(0, 0, 0, 0.15);
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

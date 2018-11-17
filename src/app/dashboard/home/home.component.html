@@ -1,0 +1,277 @@
+<div class="featured aligner" id="running">
+    <h1>Execução</h1>
+    <label>escolha os parâmetros desejados e selecione qual portal lógica executar</label>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h1 class="title">Parâmetros</h1>
+        <form #perceptronForm="ngForm" (ngSubmit)="onClick()">
+
+            <div class="form-group">
+                <label for="threshold">Threshold</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">123</span>
+                    </div>
+                    <input type="number" class="form-control" id="threshold" placeholder="1" name="threshold" [(ngModel)]="model.threshold">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rate">Taxa de aprendizagem</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">123</span>
+                    </div>
+                    <input type="number" class="form-control" id="rate" placeholder="0.2" name="rate" [(ngModel)]="model.rate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="speed">Tempo de execução (ms)</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">123</span>
+                            </div>
+                            <input type="number" class="form-control" id="speed" placeholder="200" name="speed" [(ngModel)]="model.speed">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="loop">Quantidade de repetições</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">123</span>
+                            </div>
+                            <input type="number" class="form-control" id="loop" placeholder="200" name="loop" [(ngModel)]="model.loop">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="type">Tipo da porta lógica</label>
+                <div class="input-group">
+                    <select class="form-control" id="type" name="type" [(ngModel)]="model.type" #type="ngModel">
+                        <option *ngFor="let gate of gates" [value]="gate.value">{{ gate.name }}</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button [disabled]="!perceptronForm.form.valid || running" class="btn btn-primary form-control">Treinar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <h1 class="title">Resultados</h1>
+        
+        <div class="form-group">
+            <label for="task">Task atual</label>
+            <input type="text" class="form-control" id="task" placeholder="Treinando perceptron" name="task" [(ngModel)]="task" disabled>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="training">Treinando</label>
+                    <input type="text" class="form-control" id="training" placeholder="0, 0" name="training" [(ngModel)]="result.training" disabled>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="expecting">Esperando</label>
+                    <input type="text" class="form-control" id="expecting" placeholder="0" name="expecting" [(ngModel)]="result.expecting" disabled>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="getting">Obtendo</label>
+                    <input type="text" class="form-control" id="getting" placeholder="1" name="getting" [(ngModel)]="result.getting" disabled>
+                </div>
+            </div>
+        </div>
+
+        <!-- Result stack -->
+        <div class="form-group">
+            <label for="list">Pilha de execução</label>
+            <select class="form-control big-select" id="list" multiple disabled>
+                <option *ngFor="let log of logs" class="terminal">{{ log }}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="featured aligner" id="test">
+    <h1>Teste</h1>
+    <label>informe a quantidade de itens e clique em testar</label>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="title">Pesos sinápticos</h1>
+        <form #testForm="ngForm" (ngSubmit)="onPercept()">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="first-input">Entrada 1</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">123</span>
+                            </div>
+                            <input type="number" class="form-control" id="first-input" name="first-input" placeholder="0.25" [(ngModel)]="test.item[0]" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="second-input">Entrada 2</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">123</span>
+                            </div>
+                            <input type="number" class="form-control" id="second-input" name="second-input" placeholder="0.13" [(ngModel)]="test.item[1]" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="bias">BIAS</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">123</span>
+                            </div>
+                            <input type="number" class="form-control" id="bias" name="bias" placeholder="-0.3" [(ngModel)]="test.item[2]" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="quantity">Testar percepção (elementos aleatórios) <span class="badge">obrigatório</span></label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">123</span>
+                            </div>
+                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="10" [(ngModel)]="test.value" required>
+                            <div class="input-group-append">
+                                <button [disabled]="!testForm.form.valid || !isWeighted()" class="btn btn-primary form-control">Testar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row" *ngIf="tested">
+    <div class="col-md-12">
+        <h1 class="title padding">Resultados</h1>
+    </div>
+    <div class="col-md-2" *ngFor="let item of testResult">
+        <div class="input-group input-array">
+            <input type="text" class="form-control" value="[{{ item.item[0] }}, {{ item.item[1]}}]" disabled>
+            <div class="input-group-append">
+                <span class="input-group-text" [class.blue]="item.value === 1">{{ item.value }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="featured aligner" id="about">
+    <h1>Sobre</h1>
+    <label>como funciona</label>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="chapter">
+            <h1 class="caption">Algoritmo</h1>
+            <label class="legend">Rede neural de uma camada</label>
+            <p>O <a href="https://en.wikipedia.org/wiki/Perceptron">Perceptron</a> é um algoritmo de aprendizado supervisionado de classificação linear, ou seja, ele só irá conseguir classificar problemas onde o conjunto de dados seja linearmente separável:</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="../../../assets/images/non-linear.png">
+                    <label class="description">Figura 1: Classificação não linear.</label>
+                </div>
+                <div class="col-md-6">
+                    <img src="../../../assets/images/linear.png">
+                    <label class="description">Figura 2: Classificação linear.</label>
+                </div>
+            </div>
+            <p>Idealizado e construído inicialmente por Frank Rosenblatt entre 1958 e 1962, o <span class="italic">Perceptron</span> foi desenvolvido para lidar com o problema <span class="italic">reconhecimento de padrões</span>. Em ciência da computação, o reconhecimento de padrões pode ser definido como o <span class="italic">processo pelo qual um padrão ou sinal recebido por um sistema em sua entrada é rotulado como pertencente a uma única classe de um conjunto de classes</span>.</p>
+            <p>Para entender melhor o funcionamento do algoritmo e também sobre redes neurais, estes links podem ser úteis:</p>
+            <ul>
+                <li>
+                    <label>[TEXTO]: <a href="http://sisne.org/Disciplinas/PosGrad/PsicoConex/aula4.pdf">O Perceptron de Rosenblatt</a></label>
+                </li>
+                <li>
+                    <label>[TEXTO]: <a href="https://medium.com/@thomascountz/perceptrons-in-neural-networks-dc41f3e4c1b9">Perceptrons in Neural Networks</a></label>
+                </li>
+                <li>
+                    <label>[TEXTO]: <a href="https://medium.com/@jayeshbahire/perceptron-and-backpropagation-970d752f4e44">Perceptron and Backpropagation</a></label>
+                </li>
+                <li>
+                    <label>[VÍDEO]: <a href="https://www.youtube.com/watch?v=wL2aVUjDdoo">The Perceptron made simple! Easiest way to UNDERSTAND the Perceptron!</a></label>
+                </li>
+            </ul>
+        </div>
+        <div class="chapter">
+            <h1 class="caption">Funcionamento</h1>
+            <label class="legend">Por dentro da execução</label>
+            <p>Para classificar corretamente, é necessário inserir um conjunto de classes nos quais os padrões são classificados. Para este caso, por exemplo, as classes são as portas lógicas AND, OR e XOR. Estes conjuntos são apenas as instruções básicas de cada porta, em forma de <span class="italic">array</span>:</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <ngx-prism language="javascript">
+                        {{ codes[0] }}
+                    </ngx-prism>
+                </div>
+                <div class="col-md-4">
+                    <ngx-prism language="javascript">
+                        {{ codes[1] }}
+                    </ngx-prism>
+                </div>
+                <div class="col-md-4">
+                    <ngx-prism language="javascript">
+                        {{ codes[2] }}
+                    </ngx-prism>
+                </div>
+            </div>
+            <p>Após a inicialização, os pesos serão inicializados aleatoriamente para cada entrada, adicionando-se também o peso para o BIAS, que geralmente é um (1). Após inseridos os pesos, o algoritmo já pode tentar uma primeira <span class="italic">percepção</span> dessa base de dados, utilizando os pesos gerados aleatoriamente.</p>
+            <p>Esta ação <span class="italic">percepção</span> apenas verifica se a função de ativação é alcançada utilizando os pesos atualmente definidos. Em uma probabilidade bem baixa, os pesos inicialmente definidos podem já ser os pesos ideais para resolver o problema, porém na grande maioria, os resultados não são os esperados e é necessário balancear novamente, ou seja, definir novos pesos.</p>
+            <p>A <span class="italic">função de ativação</span> será alcançada dependendo de como foi implementada, pois existes muitas funções de ativações que podem ser utilizadas, como mostra <span class="italic">Jayesh Bapu Ahire</span> em <a href="https://medium.com/@jayeshbahire/perceptron-and-backpropagation-970d752f4e44">Perceptron and Backpropagation</a>:</p>
+            <p class="quote">Cada função de ativação recebe um número e executa um fixo e específico cálculo matemático. Em prática, você pode encontrar diversas funções de ativação: </p>
+            <p class="quote">
+               • <span class="italic">Sigmoid</span>: Recebe um valor real e retorna um valor entre 0 e 1 [<span class="italic">σ (x) = 1 / (1 + exp (-x)</span>]<br>
+               • <span class="italic">tanh (função tangente hiperbólica)</span>: Recebe um valor real e retorna um valor entre -1 e 1 [<span class="italic">tanh (x) = 2σ (2x) — 1</span>]<br>
+               • <span class="italic">ReLU (modificação da unidade linear)</span>: Retorna um valor real e ajusta do threshold para 0 [<span class="italic">f (x) = max (0, x)</span>]
+            </p>
+            <p>Para este exemplo implementado, foi utilizado a função sigmoidal.</p>
+            <p>Após o treino, para o melhor caso, o perceptron já estaria apto para deduzir novas entradas, porém não se deve pensar neste caso, pois é muito raro devido ao processo estocástico das escolhas de peso. Então, a partir deste ponto, é necessário atualizar os pesos para cada item dos dados treinados. Para este exemplo, os pesos foram atualizados utilizando a <a href="https://en.wikipedia.org/wiki/Delta_rule">Delta Rule</a>.</p>
+            <p>A partir deste ponto, é necessário re-treinar o perceptron múltiplas vezes até que ele consiga predizer com <span class="italic">certeza</span> qual será o resultado correto das entradas. Com isso, é possível identificar quais os pesos utilizados para chegar a conclusão, e reutilizar estes pesos para resolver o problema sem precisar treinar a máquina novamente.</p>
+        </div>
+        <div class="chapter">
+            <h1 class="caption">Limitações</h1>
+            <label class="legend">Período negro da IA</label>
+            <p>Com a criação do Perceptron, Rosenblatt estava otimista sobre o que essa estrutura poderia fazer, prevendo que <span class="italic">o perceptron poderá eventualmente aprender, tomar decisões e traduzir idiomas</span>. Porém, um programa de pesquisa ativo sobre o assunto foi realizado durante os anos 60's, mas parou com a publicação do livro <span class="italic">Perceptrons</span>, de <span class="italic">Minsky e Papert</span>, em 1969. O estudo sugeria que havia limitações severas ao que os perceptrons poderiam fazer e que as previsões de Rosenblatt haviam sido grosseiramente exageradas.</p>
+            <p>O efeito do livro foi tão devastador que, nos próximos 10 anos, praticamente nenhuma pesquisa surgiu envolvendo o assunto. Porém, ao passar dos anos, algumas equipes de pesquisadores passaram a reviver o assunto, trazendo soluções para as limitações do Perceptron de Rosenblatt.</p>
+            <p>Neste exemplo implementado, a abordagem utilizada foi a mesma que inicialmente idealizada por Rosenblatt, o Perceptron <span class="italic">single-layer</span>. Um dos problemas desta implementação, com apenas uma camada, é que o Perceptron não consegue resolver o problema do <span class="italic">OU-EXCLUSIVO</span> (porta lógica XOR), pois ele consegue apenas resolver problemas de caráter linear, e este não pode ser resolvido apenas com a classificação linear.</p>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="../../../assets/images/and.png">
+                    <label class="description">Figura 3: Representação gráfica da porta AND.</label>
+                </div>
+                <div class="col-md-4">
+                    <img src="../../../assets/images/or.png">
+                    <label class="description">Figura 4: Representação gráfica da porta OR.</label>
+                </div>
+                <div class="col-md-4">
+                    <img src="../../../assets/images/xor.png">
+                    <label class="description">Figura 5: Representação gráfica da porta XOR.</label>
+                </div>
+            </div>
+            <p>Este problema foi <a href="https://medium.com/@lucaspereira0612/solving-xor-with-a-single-perceptron-34539f395182">resolvido futuramente</a> utilizando uma <span class="italic">camada escondida</span> onde mais de um perceptron é utilizado para classificar os itens. Porém esta implementação é recomendada apenas para fins acadêmicos, pois é possível obter melhores resultados utilizando o método de <span class="italic">Backpropagation</span>.</p>
+        </div>
+    </div>
+</div>
